@@ -1,13 +1,15 @@
 class HttpServer{
   apiUrl;
+  xApiKey;
   constructor(){
     this.apiUrl = 'http://localhost:3000';
+    this.xApiKey = 'd9e48163921e40be85ea722e75dde7e460e17beabbbfe410b8ab0557d7cd172b';
   }
   
   async getBroths() {
     const response = await fetch(`${this.apiUrl}/broths`, {
       headers: {
-        'x-api-key':'ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf'
+        'x-api-key':this.xApiKey
       }
     });
     if (response.ok) {
@@ -21,7 +23,7 @@ class HttpServer{
   async getProteins() {
     const response = await fetch(`${this.apiUrl}/proteins`, {
       headers: {
-        'x-api-key':'ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf'
+        'x-api-key':this.xApiKey
       }
     });
     if (response.ok) {
@@ -40,7 +42,7 @@ class HttpServer{
     const response = await fetch(`${this.apiUrl}/orders`, {
       method: 'post',
       headers: {
-        'x-api-key':'ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf',
+        'x-api-key':this.xApiKey,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify(payload)
