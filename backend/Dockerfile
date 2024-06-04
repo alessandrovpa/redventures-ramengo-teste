@@ -11,6 +11,7 @@ WORKDIR /app
 COPY --from=builder /usr/src/app/dist/  ./dist/
 COPY --from=builder /usr/src/app/package.json  .
 COPY --from=builder /usr/src/app/package-lock.json  .
+COPY --from=builder /usr/src/app/.env  .
 
 RUN npm install --omit=dev
 EXPOSE 3000

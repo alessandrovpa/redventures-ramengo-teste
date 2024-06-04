@@ -21,5 +21,8 @@ $ npm run start:prod
 ```bash
 $ docker build -t red-ventures-teste-backend .
 
-$ docker run -dit -p 3000:3000 --name red-ventures-teste-backend
+$ docker run -dit -p 3000:3000 --name red-ventures-teste-api red-ventures-teste-backend
 ```
+
+## Insomnia
+Você pode importar a configuração do insomnia utilizada para desenvolvimento pelo arquivo .json na pasta do backend
