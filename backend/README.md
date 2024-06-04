@@ -1,6 +1,8 @@
 ## Como rodar a API
 
 ```bash
+$ npm install
+
 # development
 $ npm run start
 

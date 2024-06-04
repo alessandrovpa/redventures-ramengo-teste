@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RamenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <img src="assets/logo.svg" alt="ramengo logo">
+    <div>
+      <img src="./assets/header-background-mobile.png" alt="header" id="mobile-header">
+      <p>Enjoy a good ramen in the comfort of your house. Create your own ramen and choose your favorite flavour
+        combination!</p>
+      <a href="#broths">
+        <button>
+          <p>Order now</p>
+          <img src="assets/arrow-right.svg" alt="arrow right">
+        </button>
+      </a>
+    </div>
+  </header>
+  <main>
+    <form id="form">
+      <section>
+        <h1>First things first: select your favorite broth.</h1>
+        <h2>It will give the whole flavor on your ramen soup. </h2>
+      </section>
+      <div class="list-item">
+        <ul id="broths" />
+      </div>
+      <section>
+        <h1>It’s time to choose (or not) your meat!</h1>
+        <h2>Some people love, some don’t. We have options for all tastes.</h2>
+      </section>
+      <div class="list-item">
+        <ul id="proteins" />
+      </div>
+      <button type="submit" id="button" disabled>
+        <p>Place my order</p>
+        <img src="assets/arrow-right.svg" alt="arrow right">
+      </button>
+    </form>
+  </main>
+</body>
+<script src="list-item-management.js"></script>
+<script src="api.js"></script>
+<script>
+  const api = new HttpServer();
+  const listItemManagement = new ListItemManagement();
+  api.getBroths().then(r => {
+    r.broths.forEach(broth => {
+      const ul = document.querySelector("#broths");
+      const listItem = listItemManagement.createListItem(broth.id, broth.imageInactive, broth.name, broth.description, broth.price, 'brothId');
+      ul.appendChild(listItem);
+    })
+  });
+
+  api.getProteins().then(r => {
+    r.proteins.forEach(protein => {
+      const ul = document.querySelector("#proteins");
+      const listItem = listItemManagement.createListItem(protein.id, protein.imageInactive, protein.name, protein.description, protein.price, 'proteinId');
+      ul.appendChild(listItem);
+    })
+  });
+
+  const form = document.querySelector('#form');
+  const button = document.querySelector('#button');
+
+  form.addEventListener('input', () => {
+    const radios = form.querySelectorAll('[type="radio"]');
+    const selectedRadio = [...radios].map(radio => radio.checked).filter(val => val === true);
+    if (selectedRadio.length === 2) button.disabled = false;
+  });
+
+  function replaceActiveWithInactive(url) {
+    const newUrl = url.replace('/active.svg', '/inactive.svg');
+    return newUrl;
+  }
+
+  function replaceInactiveWithActive(url) {
+    const newUrl = url.replace('/inactive.svg', '/active.svg');
+    return newUrl;
+  }
+
+  form.addEventListener('input', () => {
+    const radios = form.querySelectorAll('[type="radio"]');
+    const selectedRadios = [...radios].filter(radio => radio.checked).map(radio => radio.id);
+    const images = form.querySelectorAll('img');
+    [...images].forEach(image => image.src = replaceActiveWithInactive(image.src));
+    [...images].filter(image => selectedRadios.includes(image.id)).forEach(image => image.src = replaceInactiveWithActive(image.src));
+  });
+
+  form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    button.disabled = true;
+    const formData = new FormData(form);
+    const brothId = formData.get('brothId');
+    const proteinId = formData.get('proteinId');
+
+    api.makeOrder(brothId, proteinId).then(r => {
+      console.log(r);
+      const urlParams = new URLSearchParams({
+        image: r.image,
+        description: r.description
+      })
+
+      window.location.href = `/success/index.html?${urlParams.toString()}`;
+    })
+  });
+</script>
+
+</html>

@@ -5,6 +5,7 @@ import { CreateOrderService } from '@/application/modules/orders/services/create
 import { BrothRepository } from '@/domain/broth';
 import { OrderRepository } from '@/domain/order';
 import { ProteinRepository } from '@/domain/protein';
+import { ListOrdersService } from '@/application/modules/orders/services/list-orders/list-orders.service';
 
 @Module({
   controllers: [OrdersController],
@@ -24,6 +25,13 @@ import { ProteinRepository } from '@/domain/protein';
         );
       },
       inject: [OrderRepository, BrothRepository, ProteinRepository],
+    },
+    {
+      provide: ListOrdersService,
+      useFactory: (orderRepository: OrderRepository) => {
+        return new ListOrdersService(orderRepository);
+      },
+      inject: [OrderRepository],
     },
   ],
 })

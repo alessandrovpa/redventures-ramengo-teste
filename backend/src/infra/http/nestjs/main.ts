@@ -4,6 +4,7 @@ import { GlobalExceptionHandler, VerifyXApiKey } from './interceptors';
 
 async function bootstrap() {
   const app = await NestFactory.create(AppModule);
+  app.enableCors();
   app.useGlobalInterceptors(new VerifyXApiKey());
   app.useGlobalFilters(new GlobalExceptionHandler(app.get(HttpAdapterHost)));
   await app.listen(3000);

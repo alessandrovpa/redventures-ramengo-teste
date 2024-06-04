@@ -1,3 +1,4 @@
+import 'dotenv/config';
 import {
   InvalidXApiKeyError,
   MissingXApiKeyError,
@@ -22,10 +23,7 @@ export class VerifyXApiKey implements NestInterceptor {
     const request: Request = context.switchToHttp().getRequest();
 
     if (!request.headers['x-api-key']) throw new MissingXApiKeyError();
-    if (
-      request.headers['x-api-key'] !==
-      'ZtVdh8XQ2U8pWI2gmZ7f796Vh8GllXoN7mr0djNf'
-    )
+    if (request.headers['x-api-key'] !== process.env.X_API_KEY)
       throw new InvalidXApiKeyError();
 
     return next.handle().pipe();

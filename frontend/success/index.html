@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RamenGo</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=M+PLUS+Rounded+1c:wght@400;800;900&display=swap"
+    rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+  <header>
+    <div class="blue-pattern-background">
+      <img id="image" alt="order">
+      <h4>Your Order:</p>
+        <h1 id="description" />
+    </div>
+    <div>
+      <img src="../assets/bowing.png" alt="bowing">
+      <h3>どもありがとうございます。</h3>
+      <h2>Your order is being prepared</h2>
+      <p>Hold on, when you least expect you will be eating your rámen. </p>
+      <a href="../index.html">
+        <button>
+          <p>Place new order</p>
+          <img src="../assets/arrow-right.svg" alt="arrow right">
+        </button>
+      </a>
+    </div>
+  </header>
+</body>
+<script>
+  const order = new URLSearchParams(window.location.search);
+  if(!order.get("description") || !order.get("image")) window.location.replace('../index.html');
+  document.querySelector("#description").textContent = order.get("description");
+  document.querySelector("#image").src = order.get("image");
+</script>
+</html>

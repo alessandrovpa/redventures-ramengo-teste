@@ -1,0 +1,92 @@
+:root{
+  --black: #000;
+  --blue: #1820EF;
+  --red: #FF4E42;
+  --yellow: #FFC024;
+  --white: #FAFAED;
+}
+
+body, p, h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--white);
+}
+
+.red-pattern-background{
+  background-image: url("../assets/pattern-vermelha.png");
+  background-repeat: repeat;
+}
+
+.blue-pattern-background{
+  background-image: url("../assets/pattern-azul.png");
+  background-repeat: repeat;
+}
+
+header{
+  width: 100%;
+  height: 100vh;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: center;
+  text-align: center;
+}
+
+header div{
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 1rem;
+}
+
+h1, h2, h3, h4{
+  font-weight: 900;
+}
+
+h1, h3{
+  color: var(--yellow);
+}
+
+h2{
+  color: var(--red);
+}
+
+h4{
+  color: var(--white);
+}
+
+button{
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 1.5rem;
+  border: 0;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: var(--white);
+  background-color: var(--blue);
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+@media (max-width: 480px) {
+  header{
+    flex-direction: column;
+  }
+
+  header div{
+    padding: 2rem 0;
+  }
+}

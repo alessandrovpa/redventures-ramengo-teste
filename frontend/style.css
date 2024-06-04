@@ -1,0 +1,196 @@
+:root{
+  --black: #000;
+  --blue: #1820EF;
+  --red: #FF4E42;
+  --yellow: #FFC024;
+  --white: #FAFAED;
+}
+
+body, p, h1, h2, h3, h4, h5 {
+  margin: 0;
+  padding: 0;
+}
+
+body{
+  font-family: "M PLUS Rounded 1c", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+  background-color: var(--white);
+  width: 100%;
+  height: 100vh;
+  text-wrap: wrap;
+}
+
+.red-pattern-background{
+  background-image: url("./assets/pattern-vermelha.png");
+  background-repeat: repeat;
+}
+
+.blue-pattern-background{
+  background-image: url("./assets/pattern-azul.png");
+  background-repeat: repeat;
+}
+
+header{
+  width: 100%;
+  height: 100vh;
+  padding: 2rem;
+  box-sizing: border-box;
+  background-image: url("./assets/header-background.png");
+  background-size: cover;
+  background-position: center center;
+  position: relative;
+}
+
+header p{
+  color: var(--white);
+  max-width: 12rem;
+  line-height: 24px;
+  font-weight: 400;
+}
+
+header div{
+  gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  box-sizing: border-box;
+  position: absolute;
+  bottom: 20%;
+  left: 30%;
+  right: 60%;
+  top: 60%;
+}
+
+form{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 5rem 0;
+}
+
+h1, h3, h5{
+  font-weight: 900;
+}
+
+h1{
+  font-size: 2rem;
+}
+
+h2, h4{
+  font-size: 1rem;
+  font-weight: 400;
+}
+
+h5{
+  color: var(--red);  
+}
+
+h2, h4, h5, button{
+  line-height: 1.3rem;
+}
+
+button{
+  text-transform: uppercase;
+  font-size: 1rem;
+  font-weight: 800;
+  padding: 1rem;
+  border: 0;
+  border-radius: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 2rem;
+  color: var(--white);
+  background-color: var(--blue);
+}
+
+button:hover{
+  cursor: pointer;
+}
+
+button:disabled{
+  background-color: #C5C5C5;
+}
+
+.list-item{
+  display: flex;
+  overflow-x: auto;
+  max-width: 100vw;
+}
+
+ul{
+  display: flex;
+  justify-content: center;
+  gap: 5rem;
+  margin: 2rem 0;
+  padding: 1rem;
+}
+
+li{
+  list-style-type: none;
+}
+
+input[type="radio"] {
+  display: none;
+  box-sizing: border-box;
+}
+
+input[type="radio"]:checked + label {
+  background-color: var(--blue);
+}
+
+input[type="radio"]:checked + label h3{
+  color: var(--white);
+}
+
+input[type="radio"]:checked + label h4{
+  color: var(--white);
+}
+
+label{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  aspect-ratio: 1;
+  border-radius: 1rem;
+  padding: 1rem;
+  transition: 0.2s;
+  box-shadow: 0px 4px 12px 0px #E0DBBF99;
+  cursor: pointer;
+  width: 20rem;
+}
+
+h3{
+  color: var(--blue);
+  font-size: 1.3rem;
+  font-weight: 900;
+}
+
+img#mobile-header{
+  display: none;
+}
+
+@media (max-width: 480px) {
+  header{
+    background-image: url("./assets/pattern-vermelha.png");
+    background-repeat: repeat;
+    height: auto;
+  }
+  header div{
+    position: static;
+  }
+  img#mobile-header{
+    display: block;
+  }
+
+  ul{
+    gap: 0;
+  }
+
+  label{
+    padding: 0;
+  }
+}
