@@ -2,7 +2,7 @@ class HttpServer{
   apiUrl;
   xApiKey;
   constructor(){
-    this.apiUrl = 'http://localhost:3000';
+    this.apiUrl = 'https://redventures-ramengo-teste-api.onrender.com';
     this.xApiKey = 'd9e48163921e40be85ea722e75dde7e460e17beabbbfe410b8ab0557d7cd172b';
   }
   
