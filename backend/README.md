@@ -1,6 +1,9 @@
 ## Como rodar a API
 
 ```bash
+# Crie um arquivo .env e siga o modelo do arquivo .env.example
+# Adicione o valor dessa env no api.js do FrontEnd
+
 $ npm install
 
 # development
